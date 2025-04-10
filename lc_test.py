@@ -1,16 +1,19 @@
+def fn(a: list[int]) -> list[int]:
+    n = len(a)
+    answer = [1] * n
 
-numbers = [2, 7, 11, 15]
-target = 9
-left = 0
-right = len(numbers) - 1
+    left_product = 1
+    for i in range(n):
+        answer[i] = left_product
+        left_product *= a[i]
 
-while left < right:
+    right_product = 1
+    for i in range(n - 1, -1, -1):
+        answer[i] *= right_product
+        right_product *= a[i]
 
-    print(f"{numbers[left]} - {numbers[right]}")
+    return answer
 
-    if numbers[left] + numbers[right] == target:
-        print("Found")
 
-    elif numbers[left] + numbers[right] == target:
-        right -= 1
-        print(f"{numbers[right]}")
+arr = [1, 2, 3, 4]
+print(fn(arr))
