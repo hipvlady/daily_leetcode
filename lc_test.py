@@ -1,19 +1,15 @@
-def fn(a: list[int]) -> list[int]:
-    n = len(a)
-    answer = [1] * n
+def longestCommonPrefix(strs):
+    if not strs:
+        return ""
 
-    left_product = 1
-    for i in range(n):
-        answer[i] = left_product
-        left_product *= a[i]
+    for i, char in enumerate(strs[0]):
+        for string in strs[1:]:
+            if i >= len(string) or string[i] != char:
+                return strs[0][:i]
 
-    right_product = 1
-    for i in range(n - 1, -1, -1):
-        answer[i] *= right_product
-        right_product *= a[i]
-
-    return answer
+    return strs[0]
 
 
-arr = [1, 2, 3, 4]
-print(fn(arr))
+test_cases = [["flower","flow","flight"],["dog","racecar","car"]]
+for test in test_cases:
+    print(longestCommonPrefix(test))
